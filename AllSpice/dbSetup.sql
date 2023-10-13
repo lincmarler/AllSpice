@@ -38,5 +38,39 @@ INSERT INTO
 VALUES (
         'Good Soup',
         'Make soup gooder',
-        'https: / / images.unsplash.com / photo -1613844237701 -8 f3664fc2eff ? ixlib = rb -4.0.3 & ixid = M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA % 3 D % 3 D & auto = format & fit = crop & w = 2128 & q = 80'
+        'https: / / images.unsplash.com / photo -1613844237701 -8 f3664fc2eff ? ixlib = rb -4.0.3 & ixid = M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA % 3 D % 3 D & auto = format & fit = crop & w = 2128 & q = 80',
+        'Soup',
+        '652874a1403a85e165b964c0 '
     )
+
+INSERT INTO
+    recipes(
+        title,
+        instructions,
+        img,
+        category,
+        creatorId
+    )
+VALUES (
+        'Chicken Wings',
+        'Cook full chicken then eat wings',
+        'https: / / images.unsplash.com / photo -1588597989061 - b60ad0eefdbf ? ixlib = rb -4.0.3 & ixid = M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA % 3 D % 3 D & auto = format & fit = crop & w = 2069 & q = 80',
+        'Poultry',
+        '652874a1403a85e165b964c0 '
+    )
+
+CREATE TABLE
+    IF NOT EXISTS ingredients(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last update',
+        name VARCHAR(255) NOT NULL,
+        quantity VARCHAR(100) NOT NULL,
+        recipeId INT NOT NULL,
+        FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+INSERT INTO
+    ingredients (name, quantity, recipeId)
+VALUES
+('Chicken Wings', 5, '2')
